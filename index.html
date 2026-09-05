@@ -3,18 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bether Studio — Showcase</title>
+<title>Bether Studio — Propuesta para salones</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Jost:wght@200;300;400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Jost:wght@200;300;400;500&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
     --gold: #C9A84C;
-    --gold-dim: rgba(201,168,76,0.15);
+    --gold-dim: rgba(201,168,76,0.12);
+    --gold-mid: rgba(201,168,76,0.35);
     --black: #060606;
+    --surface: #0e0e0e;
+    --surface2: #141414;
     --text: #f0ece4;
-    --muted: #555555;
+    --muted: #555;
   }
 
   body {
@@ -22,15 +25,10 @@
     color: var(--text);
     font-family: 'Jost', sans-serif;
     font-weight: 300;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     overflow-x: hidden;
-    padding: 60px 20px;
   }
 
+  /* Partículas */
   .particles {
     position: fixed;
     inset: 0;
@@ -46,85 +44,207 @@
     animation: float-particle linear infinite;
   }
   @keyframes float-particle {
-    0% { opacity: 0; transform: translateY(100vh) scale(0); }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.3; }
+    0%   { opacity: 0; transform: translateY(100vh) scale(0); }
+    10%  { opacity: 0.5; }
+    90%  { opacity: 0.2; }
     100% { opacity: 0; transform: translateY(-10vh) scale(1.5); }
   }
 
-  .gold-line-top {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--gold);
-    opacity: 0.7;
-    z-index: 10;
-  }
+  .gold-line { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); opacity: 0.7; z-index: 10; }
 
-  .header {
+  /* HERO */
+  .hero {
     position: relative;
     z-index: 1;
     text-align: center;
-    margin-bottom: 64px;
+    padding: 80px 24px 64px;
     animation: fade-up 1s ease both;
   }
 
   .brand {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 8px;
     color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
   }
-  .brand::before, .brand::after {
-    content: '——';
-    margin: 0 12px;
-    opacity: 0.4;
-  }
+  .brand::before, .brand::after { content: '——'; margin: 0 10px; opacity: 0.4; }
 
-  h1 {
+  .hero h1 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
-    font-size: clamp(32px, 5vw, 52px);
+    font-size: clamp(30px, 5vw, 54px);
     line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+
+  .hero-sub {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    margin-bottom: 0;
+  }
+
+  .divider { width: 48px; height: 1px; background: var(--gold); opacity: 0.35; margin: 28px auto; }
+
+  /* BENEFICIOS SALÓN */
+  .section {
+    position: relative;
+    z-index: 1;
+    padding: 0 24px 72px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    animation: fade-up 1s ease 0.2s both;
+  }
+
+  .section-title {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3.5vw, 34px);
+    font-weight: 300;
+    margin-bottom: 48px;
+    animation: fade-up 1s ease 0.3s both;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    animation: fade-up 1s ease 0.4s both;
+  }
+
+  .benefit-card {
+    background: var(--surface2);
+    padding: 32px 28px;
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  .benefit-card:hover {
+    border-color: rgba(201,168,76,0.35);
+    background: var(--surface);
+  }
+
+  .benefit-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 16px;
+  }
+
+  .benefit-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
     color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .benefit-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* MARCA BLANCA - destacado */
+  .white-label-block {
+    position: relative;
+    z-index: 1;
+    background: var(--surface2);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 72px 24px;
+    margin-bottom: 72px;
+    text-align: center;
+    animation: fade-up 1s ease 0.5s both;
+  }
+
+  .wl-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: var(--black);
+    background: var(--gold);
+    padding: 6px 16px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  .wl-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 300;
+    line-height: 1.15;
+    max-width: 640px;
+    margin: 0 auto 20px;
+  }
+  .wl-title em { font-style: italic; color: var(--gold); }
+
+  .wl-desc {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+  }
+
+  .wl-items {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .wl-item {
+    text-align: center;
+  }
+  .wl-item-icon {
+    font-size: 20px;
+    color: var(--gold);
     margin-bottom: 8px;
   }
-  h1 em { font-style: italic; color: var(--gold); }
-
-  .sub {
+  .wl-item-text {
     font-size: 11px;
-    letter-spacing: 4px;
+    letter-spacing: 1px;
     color: var(--muted);
-    margin-top: 16px;
   }
 
-  .divider {
-    width: 60px;
-    height: 1px;
-    background: var(--gold);
-    opacity: 0.4;
-    margin: 24px auto 0;
+  /* PHONES */
+  .phones-section {
+    position: relative;
+    z-index: 1;
+    padding: 0 24px 72px;
+    text-align: center;
   }
 
   .phones-grid {
-    position: relative;
-    z-index: 1;
     display: flex;
-    gap: 40px;
+    gap: 36px;
     align-items: flex-end;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 72px;
+    margin-top: 48px;
   }
 
   .phone-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 18px;
     animation: fade-up 1s ease both;
   }
   .phone-wrap:nth-child(1) { animation-delay: 0.2s; }
@@ -133,52 +253,37 @@
 
   .phone-shell {
     position: relative;
-    width: 190px;
-    height: 400px;
-    background: #111111;
+    width: 185px;
+    height: 390px;
+    background: #111;
     border-radius: 36px;
     border: 1.5px solid var(--gold);
-    box-shadow:
-      0 0 0 1px rgba(201,168,76,0.1),
-      0 30px 80px rgba(0,0,0,0.8),
-      inset 0 0 20px rgba(201,168,76,0.03);
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.08), 0 30px 80px rgba(0,0,0,0.8);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     cursor: pointer;
   }
-
-  .phone-wrap:nth-child(2) .phone-shell {
-    width: 220px;
-    height: 460px;
-  }
+  .phone-wrap:nth-child(2) .phone-shell { width: 215px; height: 455px; }
 
   .phone-shell:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow:
-      0 0 0 1px rgba(201,168,76,0.3),
-      0 40px 100px rgba(0,0,0,0.9),
-      0 0 40px rgba(201,168,76,0.08);
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.3), 0 40px 100px rgba(0,0,0,0.9), 0 0 40px rgba(201,168,76,0.07);
   }
 
   .phone-shell::before {
     content: '';
     position: absolute;
-    right: -3px;
-    top: 80px;
-    width: 3px;
-    height: 50px;
+    right: -3px; top: 80px;
+    width: 3px; height: 50px;
     background: #1a1a1a;
     border-radius: 0 2px 2px 0;
     border: 1px solid var(--gold);
     border-left: none;
   }
-
   .phone-shell::after {
     content: '';
     position: absolute;
-    left: -3px;
-    top: 70px;
-    width: 3px;
-    height: 30px;
+    left: -3px; top: 70px;
+    width: 3px; height: 30px;
     background: #1a1a1a;
     border-radius: 2px 0 0 2px;
     border: 1px solid var(--gold);
@@ -188,11 +293,9 @@
 
   .notch {
     position: absolute;
-    top: 14px;
-    left: 50%;
+    top: 14px; left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 10px;
+    width: 56px; height: 10px;
     background: #0a0a0a;
     border-radius: 6px;
     z-index: 3;
@@ -200,22 +303,12 @@
 
   .phone-screen {
     position: absolute;
-    top: 34px;
-    left: 9px;
-    right: 9px;
-    bottom: 18px;
+    top: 34px; left: 9px; right: 9px; bottom: 18px;
     border-radius: 28px;
     overflow: hidden;
     background: #0a0a0a;
   }
-
-  .phone-screen video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
+  .phone-screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
   .phone-screen::after {
     content: '';
     position: absolute;
@@ -228,11 +321,9 @@
 
   .home-bar {
     position: absolute;
-    bottom: 6px;
-    left: 50%;
+    bottom: 6px; left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
+    width: 56px; height: 4px;
     background: var(--gold);
     opacity: 0.3;
     border-radius: 2px;
@@ -240,92 +331,87 @@
   }
 
   .phone-label { text-align: center; }
-  .phone-label .event-type {
-    font-size: 9px;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .phone-label .event-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 300;
-    color: var(--text);
-  }
+  .phone-label .event-type { font-size: 9px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 4px; }
+  .phone-label .event-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 300; }
 
   .play-btn {
-    width: 36px;
-    height: 36px;
+    width: 34px; height: 34px;
     border-radius: 50%;
     border: 1px solid rgba(201,168,76,0.4);
-    background: rgba(201,168,76,0.08);
+    background: rgba(201,168,76,0.07);
     color: var(--gold);
-    font-size: 12px;
+    font-size: 11px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     transition: all 0.2s ease;
-    margin-top: 4px;
   }
-  .play-btn:hover {
-    background: rgba(201,168,76,0.2);
-    border-color: var(--gold);
-  }
+  .play-btn:hover { background: rgba(201,168,76,0.18); border-color: var(--gold); }
 
-  .features {
+  /* WEB PAGE MENTION */
+  .web-mention {
     position: relative;
     z-index: 1;
-    display: flex;
-    gap: 48px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 64px;
-    animation: fade-up 1s ease 0.8s both;
+    max-width: 720px;
+    margin: 0 auto 72px;
+    padding: 0 24px;
+    animation: fade-up 1s ease 0.6s both;
   }
 
-  .feature { text-align: center; width: 140px; }
-  .feature-icon {
+  .web-mention-inner {
+    border: 1px solid rgba(201,168,76,0.18);
+    padding: 36px 40px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .web-mention-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    color: var(--gold);
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+
+  .web-mention-text h3 {
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
-    color: var(--gold);
-    margin-bottom: 10px;
+    font-weight: 300;
+    margin-bottom: 8px;
   }
-  .feature-title {
-    font-size: 13px;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-  .feature-desc {
-    font-size: 10px;
+  .web-mention-text h3 em { font-style: italic; color: var(--gold); }
+  .web-mention-text p {
+    font-size: 12px;
     color: var(--muted);
-    line-height: 1.6;
+    line-height: 1.8;
   }
 
+  /* CTA */
   .cta-block {
     position: relative;
     z-index: 1;
     text-align: center;
-    animation: fade-up 1s ease 1s both;
+    padding: 0 24px 80px;
+    animation: fade-up 1s ease 0.8s both;
   }
+
   .cta-block p {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
+    font-size: clamp(22px, 3vw, 32px);
     font-weight: 300;
-    color: var(--text);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .cta-block small {
     font-size: 11px;
     color: var(--muted);
     letter-spacing: 1px;
     display: block;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
   }
   .cta-btn {
     display: inline-block;
-    padding: 14px 48px;
+    padding: 16px 52px;
     border: 1px solid var(--gold);
     color: var(--gold);
     font-family: 'Jost', sans-serif;
@@ -335,128 +421,205 @@
     text-transform: uppercase;
     cursor: pointer;
     background: transparent;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease;
   }
   .cta-btn:hover { background: var(--gold-dim); }
 
+  /* FOOTER */
   .footer {
     position: relative;
     z-index: 1;
-    margin-top: 64px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 28px 24px;
     text-align: center;
     font-size: 9px;
     letter-spacing: 4px;
     color: var(--muted);
     text-transform: uppercase;
-    animation: fade-up 1s ease 1.2s both;
   }
-  .footer span { color: rgba(201,168,76,0.4); margin: 0 12px; }
+  .footer span { color: rgba(201,168,76,0.35); margin: 0 10px; }
 
   @keyframes fade-up {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  @media (max-width: 700px) {
-    .phones-grid { gap: 24px; }
+  @media (max-width: 640px) {
+    .hero { padding: 60px 20px 48px; }
+    .section { padding: 0 16px 56px; }
+    .benefits-grid { grid-template-columns: 1fr; gap: 1px; }
+    .benefit-card { padding: 24px 20px; }
+
+    .white-label-block { padding: 48px 20px; }
+    .wl-items { gap: 24px; }
+    .wl-title { font-size: 26px; }
+
+    .phones-section { padding: 0 16px 56px; }
+    .phones-grid {
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
     .phone-wrap:nth-child(2) { margin-bottom: 0; }
-    .features { gap: 28px; }
+    .phone-shell,
+    .phone-wrap:nth-child(2) .phone-shell {
+      width: min(72vw, 220px);
+      height: min(150vw, 460px);
+    }
+
+    .web-mention { padding: 0 16px; }
+    .web-mention-inner { flex-direction: column; gap: 16px; padding: 28px 24px; }
+    .web-mention-icon { font-size: 28px; }
+
+    .cta-block { padding: 0 20px 64px; }
+    .cta-btn { padding: 14px 32px; letter-spacing: 2px; }
+
+    .footer { font-size: 8px; letter-spacing: 2px; }
+  }
+
+  @media (min-width: 641px) and (max-width: 900px) {
+    .phones-grid { gap: 20px; }
+    .phone-shell { width: 155px; height: 330px; }
+    .phone-wrap:nth-child(2) .phone-shell { width: 180px; height: 380px; }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
 <body>
 
-<div class="gold-line-top"></div>
+<div class="gold-line"></div>
 <div class="particles" id="particles"></div>
 
-<header class="header">
+<!-- HERO -->
+<div class="hero">
   <div class="brand">Bether Studio</div>
   <h1>Tu salón, con su propio<br><em>sistema de invitaciones.</em></h1>
-  <p class="sub">Invitaciones digitales · Marca blanca · A medida</p>
+  <p class="hero-sub">Una propuesta pensada para salones de fiestas</p>
+</div>
+
+<!-- BENEFICIOS SALÓN -->
+<div class="section">
   <div class="divider"></div>
-</header>
+  <div class="section-label">Por qué suma a tu salón</div>
+  <div class="section-title">Lo que cambia cuando lo ofrecés</div>
 
-<div class="phones-grid">
-
-  <div class="phone-wrap">
-    <div class="phone-shell" onclick="toggleVideo('v1')">
-      <div class="notch"></div>
-      <div class="phone-screen">
-        <video id="v1"
-          src="https://res.cloudinary.com/ubfusbuo/video/upload/v1788646567/xv.mp4"
-          loop muted playsinline preload="metadata">
-        </video>
-      </div>
-      <div class="home-bar"></div>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-number">01</div>
+      <div class="benefit-title">Un diferencial real frente a otros salones</div>
+      <div class="benefit-desc">Cuando un cliente está eligiendo dónde festejar, vos podés ofrecer algo que la competencia no tiene: tecnología y experiencia digital incluidas.</div>
     </div>
-    <div class="phone-label">
-      <div class="event-type">XV años</div>
-      <div class="event-name">Invitación</div>
+    <div class="benefit-card">
+      <div class="benefit-number">02</div>
+      <div class="benefit-title">Eventos mejor organizados, menos imprevistos</div>
+      <div class="benefit-desc">Con RSVP en tiempo real y organización de mesas digital, el salón llega a cada evento con la logística resuelta. Menos llamados, menos confusión.</div>
     </div>
-    <button class="play-btn" onclick="toggleVideo('v1')" aria-label="Play/pause">▶</button>
-  </div>
-
-  <div class="phone-wrap">
-    <div class="phone-shell" onclick="toggleVideo('v2')">
-      <div class="notch"></div>
-      <div class="phone-screen">
-        <video id="v2"
-          src="https://res.cloudinary.com/ubfusbuo/video/upload/v1788646566/mario.mp4"
-          loop muted playsinline preload="metadata">
-        </video>
-      </div>
-      <div class="home-bar"></div>
+    <div class="benefit-card">
+      <div class="benefit-number">03</div>
+      <div class="benefit-title">Una nueva fuente de ingresos</div>
+      <div class="benefit-desc">El servicio de invitaciones se puede incluir en el paquete del salón o cobrar por separado. En cualquier caso, suma valor sin sumar carga operativa.</div>
     </div>
-    <div class="phone-label">
-      <div class="event-type">Cumpleaños</div>
-      <div class="event-name">Mario</div>
+    <div class="benefit-card">
+      <div class="benefit-number">04</div>
+      <div class="benefit-title">Clientes más satisfechos, más recomendaciones</div>
+      <div class="benefit-desc">Una experiencia digital elegante y funcional queda en la memoria del invitado. Eso se traduce en recomendaciones orgánicas para el salón.</div>
     </div>
-    <button class="play-btn" onclick="toggleVideo('v2')" aria-label="Play/pause">▶</button>
-  </div>
-
-  <div class="phone-wrap">
-    <div class="phone-shell" onclick="toggleVideo('v3')">
-      <div class="notch"></div>
-      <div class="phone-screen">
-        <video id="v3"
-          src="https://res.cloudinary.com/ubfusbuo/video/upload/v1788646563/beti.mp4"
-          loop muted playsinline preload="metadata">
-        </video>
-      </div>
-      <div class="home-bar"></div>
-    </div>
-    <div class="phone-label">
-      <div class="event-type">Quinceañera</div>
-      <div class="event-name">Betiana</div>
-    </div>
-    <button class="play-btn" onclick="toggleVideo('v3')" aria-label="Play/pause">▶</button>
-  </div>
-
-</div>
-
-<div class="features">
-  <div class="feature">
-    <div class="feature-icon">✦</div>
-    <div class="feature-title">A medida</div>
-    <div class="feature-desc">diseño exclusivo<br>por evento</div>
-  </div>
-  <div class="feature">
-    <div class="feature-icon">◈</div>
-    <div class="feature-title">Marca blanca</div>
-    <div class="feature-desc">con el nombre<br>de tu salón</div>
-  </div>
-  <div class="feature">
-    <div class="feature-icon">⊞</div>
-    <div class="feature-title">RSVP en tiempo real</div>
-    <div class="feature-desc">confirmaciones,<br>mesas, logística</div>
-  </div>
-  <div class="feature">
-    <div class="feature-icon">◎</div>
-    <div class="feature-title">Sin apps</div>
-    <div class="feature-desc">todo desde<br>el celular</div>
   </div>
 </div>
 
+<!-- MARCA BLANCA -->
+<div class="white-label-block">
+  <div class="wl-tag">Marca blanca</div>
+  <h2 class="wl-title">El sistema lleva<br><em>el nombre de tu salón,</em><br>no el nuestro.</h2>
+  <p class="wl-desc">Tus clientes ven tu marca en cada invitación, en cada notificación, en cada pantalla. Vos te llevás el crédito. Nosotros ponemos la tecnología.</p>
+  <div class="wl-items">
+    <div class="wl-item">
+      <div class="wl-item-icon">◈</div>
+      <div class="wl-item-text">Tu logo y colores</div>
+    </div>
+    <div class="wl-item">
+      <div class="wl-item-icon">✦</div>
+      <div class="wl-item-text">Tu nombre en todo</div>
+    </div>
+    <div class="wl-item">
+      <div class="wl-item-icon">◎</div>
+      <div class="wl-item-text">Panel propio</div>
+    </div>
+    <div class="wl-item">
+      <div class="wl-item-icon">⊞</div>
+      <div class="wl-item-text">Sin mencionar terceros</div>
+    </div>
+  </div>
+</div>
+
+<!-- INVITACIONES - PHONES -->
+<div class="phones-section">
+  <div class="section-label">Invitaciones en acción</div>
+  <div class="section-title">Cada evento, una experiencia única</div>
+
+  <div class="phones-grid">
+
+    <div class="phone-wrap">
+      <div class="phone-shell" onclick="toggleVideo('v1')">
+        <div class="notch"></div>
+        <div class="phone-screen">
+          <video id="v1" src="https://res.cloudinary.com/ubfusbuo/video/upload/v1788646567/xv.mp4" loop muted playsinline preload="metadata"></video>
+        </div>
+        <div class="home-bar"></div>
+      </div>
+      <div class="phone-label">
+        <div class="event-type">XV años</div>
+        <div class="event-name">Invitación</div>
+      </div>
+      <button class="play-btn" onclick="toggleVideo('v1')" aria-label="Play/pause">▶</button>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="phone-shell" onclick="toggleVideo('v2')">
+        <div class="notch"></div>
+        <div class="phone-screen">
+          <video id="v2" src="https://res.cloudinary.com/ubfusbuo/video/upload/v1788646566/mario.mp4" loop muted playsinline preload="metadata"></video>
+        </div>
+        <div class="home-bar"></div>
+      </div>
+      <div class="phone-label">
+        <div class="event-type">Cumpleaños</div>
+        <div class="event-name">Mario</div>
+      </div>
+      <button class="play-btn" onclick="toggleVideo('v2')" aria-label="Play/pause">▶</button>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="phone-shell" onclick="toggleVideo('v3')">
+        <div class="notch"></div>
+        <div class="phone-screen">
+          <video id="v3" src="https://res.cloudinary.com/ubfusbuo/video/upload/v1788646563/beti.mp4" loop muted playsinline preload="metadata"></video>
+        </div>
+        <div class="home-bar"></div>
+      </div>
+      <div class="phone-label">
+        <div class="event-type">Quinceañera</div>
+        <div class="event-name">Betiana</div>
+      </div>
+      <button class="play-btn" onclick="toggleVideo('v3')" aria-label="Play/pause">▶</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- WEB PAGE MENTION -->
+<div class="web-mention">
+  <div class="divider"></div>
+  <div class="web-mention-inner">
+    <div class="web-mention-icon">◻</div>
+    <div class="web-mention-text">
+      <h3>También desarrollamos la <em>presencia web de tu salón</em></h3>
+      <p>Si todavía no tenés un sitio, o el que tenés no te representa, podemos diseñarlo. Un espacio digital propio donde tus clientes lleguen antes de llamarte.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
 <div class="cta-block">
   <p>¿Querés verlo en vivo?</p>
   <small>Te mostramos un demo sin compromiso. 20 minutos alcanzan.</small>
@@ -469,46 +632,30 @@
 
 <script>
   const container = document.getElementById('particles');
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 28; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
-    p.style.cssText = `
-      left: ${Math.random() * 100}%;
-      width: ${Math.random() * 3 + 1}px;
-      height: ${Math.random() * 3 + 1}px;
-      animation-duration: ${Math.random() * 15 + 10}s;
-      animation-delay: ${Math.random() * 10}s;
-    `;
+    p.style.cssText = `left:${Math.random()*100}%;width:${Math.random()*3+1}px;height:${Math.random()*3+1}px;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;`;
     container.appendChild(p);
   }
 
   function toggleVideo(id) {
     const v = document.getElementById(id);
     const btn = v.closest('.phone-wrap').querySelector('.play-btn');
-    if (v.paused) {
-      v.play();
-      btn.textContent = '⏸';
-    } else {
-      v.pause();
-      btn.textContent = '▶';
-    }
+    if (v.paused) { v.play(); btn.textContent = '⏸'; }
+    else { v.pause(); btn.textContent = '▶'; }
   }
 
-  const videos = document.querySelectorAll('video');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const v = entry.target;
       const btn = v.closest('.phone-wrap').querySelector('.play-btn');
-      if (entry.isIntersecting) {
-        v.play().then(() => btn.textContent = '⏸').catch(() => {});
-      } else {
-        v.pause();
-        btn.textContent = '▶';
-      }
+      if (entry.isIntersecting) { v.play().then(() => btn.textContent = '⏸').catch(()=>{}); }
+      else { v.pause(); btn.textContent = '▶'; }
     });
   }, { threshold: 0.5 });
 
-  videos.forEach(v => observer.observe(v));
+  document.querySelectorAll('video').forEach(v => observer.observe(v));
 </script>
 </body>
 </html>

@@ -560,7 +560,7 @@
   <div class="phones-grid">
 
     <div class="phone-wrap">
-      <div class="phone-shell" onclick="toggleVideo('v1')">
+      <div class="phone-shell" onclick="openModal('https://res.cloudinary.com/ubfusbuo/video/upload/v1788646567/xv.mp4')">
         <div class="notch"></div>
         <div class="phone-screen">
           <video id="v1" src="https://res.cloudinary.com/ubfusbuo/video/upload/v1788646567/xv.mp4" loop muted playsinline preload="metadata"></video>
@@ -571,11 +571,10 @@
         <div class="event-type">XV años</div>
         <div class="event-name">Invitación</div>
       </div>
-      <button class="play-btn" onclick="toggleVideo('v1')" aria-label="Play/pause">▶</button>
     </div>
 
     <div class="phone-wrap">
-      <div class="phone-shell" onclick="toggleVideo('v2')">
+      <div class="phone-shell" onclick="openModal('https://res.cloudinary.com/ubfusbuo/video/upload/v1788646566/mario.mp4')">
         <div class="notch"></div>
         <div class="phone-screen">
           <video id="v2" src="https://res.cloudinary.com/ubfusbuo/video/upload/v1788646566/mario.mp4" loop muted playsinline preload="metadata"></video>
@@ -586,11 +585,10 @@
         <div class="event-type">Cumpleaños</div>
         <div class="event-name">Mario</div>
       </div>
-      <button class="play-btn" onclick="toggleVideo('v2')" aria-label="Play/pause">▶</button>
     </div>
 
     <div class="phone-wrap">
-      <div class="phone-shell" onclick="toggleVideo('v3')">
+      <div class="phone-shell" onclick="openModal('https://res.cloudinary.com/ubfusbuo/video/upload/v1788646563/beti.mp4')">
         <div class="notch"></div>
         <div class="phone-screen">
           <video id="v3" src="https://res.cloudinary.com/ubfusbuo/video/upload/v1788646563/beti.mp4" loop muted playsinline preload="metadata"></video>
@@ -601,7 +599,6 @@
         <div class="event-type">Quinceañera</div>
         <div class="event-name">Betiana</div>
       </div>
-      <button class="play-btn" onclick="toggleVideo('v3')" aria-label="Play/pause">▶</button>
     </div>
 
   </div>
@@ -623,7 +620,17 @@
 <div class="cta-block">
   <p>¿Querés verlo en vivo?</p>
   <small>Te mostramos un demo sin compromiso. 20 minutos alcanzan.</small>
-  <button class="cta-btn">Escribinos hoy</button>
+  <a class="cta-btn" href="https://wa.me/541137028226?text=Hola%2C%20vi%20la%20propuesta%20de%20Bether%20Studio%20y%20me%20interesa%20saber%20m%C3%A1s." target="_blank" rel="noopener">Escribinos hoy</a>
+</div>
+
+<!-- Modal lightbox -->
+<div id="modal" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;flex-direction:column;gap:20px;">
+  <div style="position:relative;width:min(85vw,340px);">
+    <div style="position:relative;background:#111;border-radius:36px;border:1.5px solid #C9A84C;overflow:hidden;aspect-ratio:9/19;">
+      <video id="modal-video" style="width:100%;height:100%;object-fit:cover;display:block;" controls playsinline></video>
+    </div>
+  </div>
+  <button onclick="closeModal()" style="background:transparent;border:1px solid rgba(201,168,76,0.4);color:#C9A84C;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:3px;padding:10px 28px;cursor:pointer;text-transform:uppercase;">Cerrar</button>
 </div>
 
 <div class="footer">
@@ -646,12 +653,31 @@
     else { v.pause(); btn.textContent = '▶'; }
   }
 
+  function openModal(src) {
+    const modal = document.getElementById('modal');
+    const mv = document.getElementById('modal-video');
+    mv.src = src;
+    modal.style.display = 'flex';
+    mv.play();
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('modal');
+    const mv = document.getElementById('modal-video');
+    mv.pause();
+    mv.src = '';
+    modal.style.display = 'none';
+  }
+
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const v = entry.target;
-      const btn = v.closest('.phone-wrap').querySelector('.play-btn');
-      if (entry.isIntersecting) { v.play().then(() => btn.textContent = '⏸').catch(()=>{}); }
-      else { v.pause(); btn.textContent = '▶'; }
+      if (entry.isIntersecting) { v.play().catch(()=>{}); }
+      else { v.pause(); }
     });
   }, { threshold: 0.5 });
 
